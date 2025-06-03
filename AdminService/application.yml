@@ -1,0 +1,28 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: admin-service
+
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        register: true
+        service-name: admin-service
+
+  management:
+    endpoints:
+      web:
+        exposure:
+          include: '*'
+    health:
+      livenessState: true
+      readinessState: true
+
+  spring:
+    boot:
+      admin:
+        ui:
+          title: "Admin Dashboard"
