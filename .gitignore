@@ -1,0 +1,12 @@
+# Ignorar todas las carpetas .idea en cualquier nivel del proyecto
+**/.idea/
+**/*.iml
+
+# Ignorar archivos de configuración de IntelliJ IDEA
+*.iws
+*.ipr
+.idea/
+
+# Opcionalmente, ignorar otros archivos de entorno local
+*.log
+.DS_Store
