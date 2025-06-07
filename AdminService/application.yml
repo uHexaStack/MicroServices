@@ -1,28 +1,22 @@
 server:
-  port: 9090
+  port: 8080
+  servlet:
+    context-path: /
 
 spring:
+  boot:
+    boot:
+      admin:
+        context-path: /
+        ui:
+          public-url: http://localhost:8080/admin
   application:
     name: admin-service
 
-    consul:
-      host: localhost
-      port: 8500
-      discovery:
-        register: true
-        service-name: admin-service
 
-  management:
-    endpoints:
-      web:
-        exposure:
-          include: '*'
-    health:
-      livenessState: true
-      readinessState: true
-
-  spring:
-    boot:
-      admin:
-        ui:
-          title: "Admin Dashboard"
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true

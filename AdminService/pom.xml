@@ -5,8 +5,8 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.5.0</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <version>3.3.3</version>
+        <relativePath/>
     </parent>
     <groupId>com.uhexastack</groupId>
     <artifactId>AdminService</artifactId>
@@ -50,12 +50,14 @@
         <dependency>
             <groupId>de.codecentric</groupId>
             <artifactId>spring-boot-admin-starter-server</artifactId>
-            <version>3.1.8</version> <!-- compatible con Spring Boot 3.2+ hasta 3.5 -->
+            <version>3.1.8</version>
         </dependency>
 
+        <!-- EUREKA CLIENT -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-consul-discovery</artifactId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+            <version>3.1.5</version>
         </dependency>
     </dependencies>
     <dependencyManagement>
@@ -63,7 +65,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>2023.0.1</version> <!-- compatible con Spring Boot 3.2+ -->
+                <version>2023.0.1</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -77,5 +79,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
