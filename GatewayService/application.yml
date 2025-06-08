@@ -19,10 +19,18 @@ spring:
           filters:
             - StripPrefix=1
             - AddRequestHeader=X-Forwarded-Prefix, /admin
+
         - id: registry-service
           uri: lb://registry-service
           predicates:
             - Path=/registry/**
+
+        - id: order-service
+          uri: lb://order-service
+          predicates:
+            - Path=/api/v1/orders/**
+          filters:
+            - StripPrefix=0
 
 
 eureka:

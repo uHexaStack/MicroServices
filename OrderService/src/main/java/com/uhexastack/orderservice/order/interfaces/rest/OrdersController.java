@@ -72,6 +72,11 @@ public class OrdersController {
         return ResponseEntity.ok(orderResource);
     }
 
+    @GetMapping("/test")
+    public ResponseEntity<String> getTestText() {
+        return ResponseEntity.ok("This is a fixed test text.");
+    }
+
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "Create a new order")
     @ApiResponses(value = {
