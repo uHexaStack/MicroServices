@@ -1,7 +1,7 @@
 package com.uhexastack.inventoryservice.inventory.interfaces.rest.resources;
 
 
-import com.uhexastack.inventoryservice.shared.domain.model.valuobjects.Money;
+import com.uhexastack.shared.domain.model.valuobjects.Money;
 
 public record CreateInventoryItemResource(
         Long userId,

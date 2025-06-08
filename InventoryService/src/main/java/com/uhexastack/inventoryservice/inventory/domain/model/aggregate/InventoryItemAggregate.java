@@ -6,9 +6,9 @@ import com.uhexastack.inventoryservice.inventory.domain.model.commands.CreateInv
 import com.uhexastack.inventoryservice.inventory.domain.model.commands.ReleaseInventoryCommand;
 import com.uhexastack.inventoryservice.inventory.domain.model.commands.ReserveInventoryCommand;
 import com.uhexastack.inventoryservice.inventory.domain.model.events.StockLowEvent;
-import com.uhexastack.inventoryservice.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
-import com.uhexastack.inventoryservice.shared.domain.model.valuobjects.Money;
-import com.uhexastack.inventoryservice.shared.domain.model.valuobjects.Quantity;
+import com.uhexastack.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
+import com.uhexastack.shared.domain.model.valuobjects.Money;
+import com.uhexastack.shared.domain.model.valuobjects.Quantity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

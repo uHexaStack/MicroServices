@@ -1,6 +1,6 @@
 package com.uhexastack.inventoryservice.inventory.domain.model.commands;
 
-import com.uhexastack.inventoryservice.shared.domain.model.valuobjects.Money;
+import com.uhexastack.shared.domain.model.valuobjects.Money;
 
 public record CreateInventoryItemCommand(
         Long userId,

@@ -5,8 +5,8 @@ import com.uhexastack.orderservice.order.domain.model.commands.CreateOrderComman
 import com.uhexastack.orderservice.order.domain.model.entities.OrderLine;
 import com.uhexastack.orderservice.order.domain.model.entities.OrderStatus;
 import com.uhexastack.orderservice.order.domain.model.valueobjects.ShippingAddress;
-import com.uhexastack.orderservice.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
-import com.uhexastack.orderservice.shared.domain.model.valuobjects.Money;
+import com.uhexastack.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
+import com.uhexastack.shared.domain.model.valuobjects.Money;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

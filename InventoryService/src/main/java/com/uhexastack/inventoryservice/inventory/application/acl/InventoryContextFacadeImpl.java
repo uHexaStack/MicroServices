@@ -1,6 +1,5 @@
 package com.uhexastack.inventoryservice.inventory.application.acl;
 
-import com.uhexastack.inventoryservice.shared.domain.model.valuobjects.*;
 import com.uhexastack.inventoryservice.inventory.domain.model.aggregate.InventoryItemAggregate;
 import com.uhexastack.inventoryservice.inventory.domain.model.commands.AdjustInventoryCommand;
 import com.uhexastack.inventoryservice.inventory.domain.model.commands.CreateInventoryItemCommand;
@@ -10,7 +9,8 @@ import com.uhexastack.inventoryservice.inventory.domain.model.queries.GetLowStoc
 import com.uhexastack.inventoryservice.inventory.domain.services.InventoryCommandService;
 import com.uhexastack.inventoryservice.inventory.domain.services.InventoryQueryService;
 import com.uhexastack.inventoryservice.inventory.interfaces.acl.InventoryContextFacade;
-import com.uhexastack.inventoryservice.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
+import com.uhexastack.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
+import com.uhexastack.shared.domain.model.valuobjects.Money;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

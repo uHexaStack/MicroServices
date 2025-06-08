@@ -2,8 +2,8 @@ package com.uhexastack.orderservice.order.domain.model.entities;
 
 
 import com.uhexastack.orderservice.order.domain.model.aggregates.OrderAggregate;
-import com.uhexastack.orderservice.shared.domain.model.entities.AuditableModel;
-import com.uhexastack.orderservice.shared.domain.model.valuobjects.Money;
+import com.uhexastack.shared.domain.model.entities.AuditableModel;
+import com.uhexastack.shared.domain.model.valuobjects.Money;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
