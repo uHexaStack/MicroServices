@@ -6,17 +6,26 @@ spring:
     name: inventory-service
 
   rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
+    exchange:
+      order: order.exchange
+      routing-key:
+        order-cancelled: order.cancelled
+    listener:
+      simple:
+        default-requeue-rejected: false
+        acknowledge-mode: auto
+    template:
+      exchange: ${rabbitmq.exchange.order}
+    message-converter:
+      json:
+        enabled: true
 
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka  # Dirección del Eureka Server
-    register-with-eureka: true
-    fetch-registry: true
+    register-with-eureka: false
+    fetch-registry: false
 
   instance:
     prefer-ip-address: true

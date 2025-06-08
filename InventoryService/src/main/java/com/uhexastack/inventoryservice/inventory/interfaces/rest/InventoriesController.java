@@ -2,11 +2,21 @@ package com.uhexastack.inventoryservice.inventory.interfaces.rest;
 
 
 import com.uhexastack.inventoryservice.inventory.domain.model.commands.AdjustInventoryCommand;
+import com.uhexastack.inventoryservice.inventory.domain.model.commands.ReleaseInventoryCommand;
+import com.uhexastack.inventoryservice.inventory.domain.model.commands.ReserveInventoryCommand;
+import com.uhexastack.inventoryservice.inventory.domain.model.queries.GetInventoryByUserIdAndNameQuery;
+import com.uhexastack.inventoryservice.inventory.domain.model.queries.GetInventoryItemByIdQuery;
+import com.uhexastack.inventoryservice.inventory.domain.model.queries.GetLowStockItemByNameQuery;
+import com.uhexastack.inventoryservice.inventory.domain.model.queries.GetLowStockItemsQuery;
 import com.uhexastack.inventoryservice.inventory.domain.services.InventoryCommandService;
 import com.uhexastack.inventoryservice.inventory.domain.services.InventoryQueryService;
 import com.uhexastack.inventoryservice.inventory.interfaces.rest.resources.CreateInventoryItemResource;
+import com.uhexastack.inventoryservice.inventory.interfaces.rest.resources.InventoryItemLowStockResource;
+import com.uhexastack.inventoryservice.inventory.interfaces.rest.resources.InventoryItemQuantityResource;
 import com.uhexastack.inventoryservice.inventory.interfaces.rest.resources.InventoryItemResource;
 import com.uhexastack.inventoryservice.inventory.interfaces.rest.transform.CreateInventoryItemCommandFromResourceAssembler;
+import com.uhexastack.inventoryservice.inventory.interfaces.rest.transform.InventoryItemLowStockResourceFromEntityAssembler;
+import com.uhexastack.inventoryservice.inventory.interfaces.rest.transform.InventoryItemQuantityResourceFromEntityAssembler;
 import com.uhexastack.inventoryservice.inventory.interfaces.rest.transform.InventoryItemResourceFromEntityAssembler;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

@@ -1,69 +1,59 @@
 package com.uhexastack.inventoryservice.inventory.application.internal.eventhandlers;
 
-
-import com.qu3dena.aquaengine.backend.order.domain.model.events.OrderCreatedEvent;
-import com.qu3dena.aquaengine.backend.order.interfaces.acl.OrderContextFacade;
+import com.uhexastack.inventoryservice.inventory.domain.model.commands.ReserveInventoryCommand;
 import com.uhexastack.inventoryservice.inventory.domain.services.InventoryCommandService;
+import com.uhexastack.shared.domain.model.events.OrderCreatedEvent;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 /**
- * Event handler for processing order created events.
- * <p>
- * When a new order is created, this handler retrieves the order lines and
- * attempts to reserve the corresponding product quantities in the inventory.
- * If the reservation results in a low stock condition, an event is published.
- * </p>
+ * Event handler for processing `OrderCreatedEvent` messages.
+ * This service listens to RabbitMQ messages and handles inventory reservation
+ * for the products in the created order.
  */
 @Service
 public class OrderCreatedEventHandler {
 
-    private final OrderContextFacade orderFacade;
     private final InventoryCommandService inventoryCommandService;
     private final ApplicationEventPublisher eventPublisher;
 
     /**
-     * Constructs a new OrderCreatedEventHandler with the required dependencies.
+     * Constructor for `OrderCreatedEventHandler`.
      *
-     * @param orderFacade             the facade for accessing order details
-     * @param inventoryCommandService the service handling inventory commands
-     * @param eventPublisher          the publisher for application events
+     * @param inventoryCommandService Service for handling inventory commands.
+     * @param eventPublisher Publisher for application events.
      */
-    public OrderCreatedEventHandler(OrderContextFacade orderFacade, InventoryCommandService inventoryCommandService, ApplicationEventPublisher eventPublisher) {
-        this.orderFacade = orderFacade;
+    public OrderCreatedEventHandler(InventoryCommandService inventoryCommandService,
+                                    ApplicationEventPublisher eventPublisher) {
         this.inventoryCommandService = inventoryCommandService;
         this.eventPublisher = eventPublisher;
     }
 
     /**
-     * Handles the OrderCreatedEvent.
-     * <p>
-     * Retrieves the product quantities from the order context and attempts to reserve
-     * inventory for each product. If a reservation leads to a low stock condition,
-     * the corresponding event is published. In case of any errors during reservation,
-     * an error message is printed.
-     * </p>
+     * Listener method for handling `OrderCreatedEvent` messages from RabbitMQ.
+     * Processes the event by reserving inventory for each product in the order.
      *
-     * @param event the OrderCreatedEvent containing order details
+     * @param event The `OrderCreatedEvent` containing order details.
      */
-    @EventListener
+    @RabbitListener(queues = "order.created.queue")
     public void onOrderCreated(OrderCreatedEvent event) {
         Long orderId = event.orderId();
 
-        var productQuantities = orderFacade.getOrderLines(orderId);
-
-        productQuantities.forEach((inventoryItemId, quantity) -> {
+        // Iterate through the product quantities in the order and reserve inventory.
+        event.productQuantities().forEach((inventoryItemId, quantity) -> {
             try {
+                // Attempt to reserve inventory for the given product and quantity.
                 var maybeLow = inventoryCommandService.handle(
                         new ReserveInventoryCommand(inventoryItemId, quantity)
                 );
+
+                // If inventory is low, publish a low inventory event.
                 maybeLow.ifPresent(eventPublisher::publishEvent);
             } catch (IllegalArgumentException ex) {
-                System.err.println(
-                        "Inventory reservation failed for inventoryItemId=" + inventoryItemId +
-                                " in orderId" + orderId + ": " + ex.getMessage()
-                );
+                // Log an error if inventory reservation fails.
+                System.err.println("Inventory reservation failed for inventoryItemId=" + inventoryItemId +
+                        " in orderId=" + orderId + ": " + ex.getMessage());
             }
         });
     }

@@ -1,40 +1,43 @@
 package com.uhexastack.inventoryservice.inventory.application.internal.eventhandlers;
 
-
-import com.qu3dena.aquaengine.backend.order.domain.model.events.OrderCancelledEvent;
-import com.qu3dena.aquaengine.backend.order.interfaces.acl.OrderContextFacade;
+import com.uhexastack.inventoryservice.inventory.domain.model.commands.ReleaseInventoryCommand;
 import com.uhexastack.inventoryservice.inventory.domain.services.InventoryCommandService;
+import com.uhexastack.shared.domain.model.events.OrderCancelledEvent;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
-@Service
-public class OrderCancelledEventHandler {
+        /**
+         * Event handler for processing `OrderCancelledEvent` messages.
+         * This service listens to RabbitMQ messages and handles inventory release
+         * for the products in the cancelled order.
+         */
+        @Service
+        public class OrderCancelledEventHandler {
 
-    private final OrderContextFacade orderFacade;
-    private final InventoryCommandService inventoryCommandService;
+            private final InventoryCommandService inventoryCommandService;
 
-    public OrderCancelledEventHandler(OrderContextFacade orderFacade, InventoryCommandService inventoryCommandService) {
-        this.orderFacade = orderFacade;
-        this.inventoryCommandService = inventoryCommandService;
-    }
-
-    @EventListener
-    public void onOrderCancelled(OrderCancelledEvent event) {
-        Long orderId = event.orderId();
-
-        var productQuantities = orderFacade.getOrderLines(orderId);
-
-        productQuantities.forEach((productId, quantity) -> {
-            try {
-                inventoryCommandService.handle(
-                        new ReleaseInventoryCommand(productId, quantity)
-                );
-            } catch (IllegalArgumentException ex) {
-                System.err.println(
-                        "Stock release failed for productId=" + productId +
-                                " in orderId=" + orderId + ": " + ex.getMessage()
-                );
+            /**
+             * Constructor for `OrderCancelledEventHandler`.
+             *
+             * @param inventoryCommandService Service for handling inventory commands.
+             */
+            public OrderCancelledEventHandler(InventoryCommandService inventoryCommandService) {
+                this.inventoryCommandService = inventoryCommandService;
             }
-        });
-    }
-}
+
+            /**
+             * Listener method for handling `OrderCancelledEvent` messages from RabbitMQ.
+             * Processes the event by releasing inventory for each product in the cancelled order.
+             *
+             * @param event The `OrderCancelledEvent` containing order details.
+             */
+            @RabbitListener(queues = "order.cancelled.queue")
+            public void handleOrderCancelled(OrderCancelledEvent event) {
+                // Iterate through the product quantities in the order and release inventory.
+                event.getProductQuantities().forEach((productId, quantity) -> {
+                    // Handle the release of inventory for the given product and quantity.
+                    inventoryCommandService.handle(new ReleaseInventoryCommand(productId, quantity));
+                });
+            }
+        }
