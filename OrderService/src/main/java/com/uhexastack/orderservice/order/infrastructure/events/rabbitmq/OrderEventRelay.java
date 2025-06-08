@@ -1,4 +1,4 @@
-package com.uhexastack.orderservice.order.application.internal.eventhandlers;
+package com.uhexastack.orderservice.order.infrastructure.events.rabbitmq;
 
 import com.uhexastack.orderservice.order.domain.model.events.OrderCancelledEvent;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;

@@ -1,4 +1,4 @@
-package com.uhexastack.orderservice;
+package com.uhexastack.orderservice.order.infrastructure.eureka.config;
 
 import com.netflix.discovery.AbstractDiscoveryClientOptionalArgs;
 import org.springframework.context.annotation.Bean;
