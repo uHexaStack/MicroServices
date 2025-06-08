@@ -1,22 +1,28 @@
 server:
   port: 8080
-  servlet:
-    context-path: /
 
 spring:
   boot:
-    boot:
       admin:
+        discovery:
+            enabled: true
         context-path: /
         ui:
-          public-url: http://localhost:8080/admin
+          public-url: http://localhost:8080/admin/
   application:
     name: admin-service
 
 
 eureka:
+  instance:
+    prefer-ip-address: true
+    hostname: localhost
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://localhost:8761/eureka/
     fetch-registry: true
     register-with-eureka: true
+
+management:
+  security:
+    enabled: false
