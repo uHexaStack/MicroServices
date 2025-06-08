@@ -1,6 +1,7 @@
-package com.uhexastack.orderservice.order.infrastructure.events.rabbitmq;
+package com.uhexastack.orderservice.order.infrastructure.rabbitmq.events;
 
 import com.uhexastack.orderservice.order.domain.model.events.OrderCancelledEvent;
+import com.uhexastack.shared.domain.model.events.OrderCreatedEvent;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.event.EventListener;
@@ -22,6 +23,10 @@ public class OrderEventRelay {
 
     @EventListener
     public void handleOrderCancelled(OrderCancelledEvent event) {
+        rabbitTemplate.convertAndSend(exchange, routingKey, event);
+    }
+    @EventListener
+    public void onOrderCreated(OrderCreatedEvent event) {
         rabbitTemplate.convertAndSend(exchange, routingKey, event);
     }
 }

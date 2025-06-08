@@ -1,0 +1,23 @@
+package com.uhexastack.orderservice.order.infrastructure.rabbitmq.config;
+
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.TopicExchange;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+
+public class RabbitMQConfig {
+    @Bean
+    public Queue orderCreatedQueue() {
+        return new Queue("order.created.queue");
+    }
+
+    @Bean
+    public Binding bindingOrderCreated(Queue orderCreatedQueue,
+                                       TopicExchange orderExchange,
+                                       @Value("${rabbitmq.routing-key.order-created}") String routingKey) {
+        return BindingBuilder.bind(orderCreatedQueue).to(orderExchange).with(routingKey);
+    }
+
+}
