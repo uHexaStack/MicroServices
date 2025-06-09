@@ -14,12 +14,14 @@ public record CreateOrderResource(
             String state,
             String postalCode,
             String country
-    ) {}
+    ) {
+    }
 
     public record CreateOrderLineResource(
             Long productId,
             Integer quantity,
             BigDecimal unitPrice,
             String currency
-    ) {}
+    ) {
+    }
 }

@@ -39,23 +39,26 @@ public class OrderStatus {
         return orderStatuses == null || orderStatuses.isEmpty() ? Set.of(getDefaultStatus()) : orderStatuses;
     }
 
-    public String getStringStatus() {
-        return this.name.name();
-    }
-
     public static OrderStatus create(String name) {
         return new OrderStatus(OrderStatusType.valueOf(name));
+    }
+
+    public String getStringStatus() {
+        return this.name.name();
     }
 
     public void confirm() {
         this.name = OrderStatusType.CONFIRMED;
     }
+
     public void cancel() {
         this.name = OrderStatusType.CANCELLED;
     }
+
     public void ship() {
         this.name = OrderStatusType.SHIPPED;
     }
+
     public void deliver() {
         this.name = OrderStatusType.DELIVERED;
     }

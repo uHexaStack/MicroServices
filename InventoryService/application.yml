@@ -8,14 +8,14 @@ spring:
   rabbitmq:
     exchange:
       order: order.exchange
-      routing-key:
-        order-cancelled: order.cancelled
+    routing-key:
+      order-cancelled: order.cancelled
     listener:
       simple:
         default-requeue-rejected: false
         acknowledge-mode: auto
     template:
-      exchange: ${rabbitmq.exchange.order}
+      exchange: ${spring.rabbitmq.exchange.order}
     message-converter:
       json:
         enabled: true
@@ -24,8 +24,8 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka  # Dirección del Eureka Server
-    register-with-eureka: false
-    fetch-registry: false
+    register-with-eureka: true
+    fetch-registry: true
 
   instance:
     prefer-ip-address: true

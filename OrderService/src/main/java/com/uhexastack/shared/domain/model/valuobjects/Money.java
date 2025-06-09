@@ -1,4 +1,3 @@
-
 package com.uhexastack.shared.domain.model.valuobjects;
 
 import jakarta.persistence.Embeddable;

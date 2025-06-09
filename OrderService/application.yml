@@ -11,6 +11,13 @@ spring:
     username: guest
     password: guest
 
+rabbitmq:
+  exchange:
+    order: order.exchange
+  routing-key:
+    order-created: order.created   # <-- Add this line
+    order-cancelled: order.cancelled
+
 eureka:
   client:
     service-url:
@@ -21,9 +28,3 @@ eureka:
   instance:
     prefer-ip-address: true
     hostname: localhost
-
-rabbitmq:
-  exchange:
-    order: order.exchange
-  routing-key:
-    order-cancelled: order.cancelled

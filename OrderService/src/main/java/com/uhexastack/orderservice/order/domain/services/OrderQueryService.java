@@ -1,9 +1,9 @@
 package com.uhexastack.orderservice.order.domain.services;
 
 
-
 import com.uhexastack.orderservice.order.domain.model.aggregates.OrderAggregate;
-import com.uhexastack.orderservice.order.domain.model.queries.*;
+import com.uhexastack.orderservice.order.domain.model.queries.GetOrderByIdQuery;
+import com.uhexastack.orderservice.order.domain.model.queries.GetOrdersByUserIdQuery;
 
 import java.util.List;
 import java.util.Optional;

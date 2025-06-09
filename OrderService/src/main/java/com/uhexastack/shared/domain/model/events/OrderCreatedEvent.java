@@ -5,7 +5,8 @@ import java.io.Serializable;
 public class OrderCreatedEvent implements Serializable {
     private Long orderId;
 
-    public OrderCreatedEvent() {}
+    public OrderCreatedEvent() {
+    }
 
     public OrderCreatedEvent(Long orderId) {
         this.orderId = orderId;

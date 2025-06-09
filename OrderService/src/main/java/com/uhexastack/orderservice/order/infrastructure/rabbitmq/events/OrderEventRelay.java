@@ -25,6 +25,7 @@ public class OrderEventRelay {
     public void handleOrderCancelled(OrderCancelledEvent event) {
         rabbitTemplate.convertAndSend(exchange, routingKey, event);
     }
+
     @EventListener
     public void onOrderCreated(OrderCreatedEvent event) {
         rabbitTemplate.convertAndSend(exchange, routingKey, event);

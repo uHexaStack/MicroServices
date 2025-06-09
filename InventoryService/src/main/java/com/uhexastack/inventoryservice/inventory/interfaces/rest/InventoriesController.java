@@ -42,7 +42,10 @@ public class InventoriesController {
         this.inventoryCommandService = inventoryCommandService;
         this.inventoryQueryService = inventoryQueryService;
     }
-
+    @GetMapping("/test")
+    public ResponseEntity<String> getTestText() {
+        return ResponseEntity.ok("This is a fixed test text.");
+    }
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "Create inventory item", description = "Creates a new inventory item with initial quantity")
     @ApiResponses(value = {

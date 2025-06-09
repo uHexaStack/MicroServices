@@ -96,9 +96,9 @@ public class OrdersController {
     @PatchMapping(path = "/{orderId}/cancel", consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "Cancel order", description = "Updates order status to CANCELLED")
     @ApiResponses({
-        @ApiResponse(responseCode = "200", description = "Order updated to CANCELLED"),
-        @ApiResponse(responseCode = "404", description = "Order not found"),
-        @ApiResponse(responseCode = "400", description = "Invalid input")
+            @ApiResponse(responseCode = "200", description = "Order updated to CANCELLED"),
+            @ApiResponse(responseCode = "404", description = "Order not found"),
+            @ApiResponse(responseCode = "400", description = "Invalid input")
     })
     public ResponseEntity<OrderResource> patchOrderStatus(
             @PathVariable Long orderId,
@@ -126,9 +126,9 @@ public class OrdersController {
     @PatchMapping(path = "/{orderId}/confirm", consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "Confirm order", description = "Updates order status to CONFIRMED")
     @ApiResponses({
-        @ApiResponse(responseCode = "200", description = "Order updated to CONFIRMED"),
-        @ApiResponse(responseCode = "400", description = "Invalid input"),
-        @ApiResponse(responseCode = "404", description = "Order not found")
+            @ApiResponse(responseCode = "200", description = "Order updated to CONFIRMED"),
+            @ApiResponse(responseCode = "400", description = "Invalid input"),
+            @ApiResponse(responseCode = "404", description = "Order not found")
     })
     public ResponseEntity<OrderResource> patchOrderStatusToConfirmed(
             @PathVariable Long orderId,
@@ -153,9 +153,9 @@ public class OrdersController {
     @PatchMapping(path = "/{orderId}/ship", consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "Ship order", description = "Updates order status to SHIPPED")
     @ApiResponses({
-        @ApiResponse(responseCode = "200", description = "Order updated to SHIPPED"),
-        @ApiResponse(responseCode = "400", description = "Invalid input"),
-        @ApiResponse(responseCode = "404", description = "Order not found")
+            @ApiResponse(responseCode = "200", description = "Order updated to SHIPPED"),
+            @ApiResponse(responseCode = "400", description = "Invalid input"),
+            @ApiResponse(responseCode = "404", description = "Order not found")
     })
     public ResponseEntity<OrderResource> patchOrderStatusToShipped(
             @PathVariable Long orderId,
@@ -182,9 +182,9 @@ public class OrdersController {
     @PatchMapping(path = "/{orderId}/deliver", consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "Deliver order", description = "Updates order status to DELIVERED")
     @ApiResponses({
-        @ApiResponse(responseCode = "200", description = "Order updated to DELIVERED"),
-        @ApiResponse(responseCode = "400", description = "Invalid input"),
-        @ApiResponse(responseCode = "404", description = "Order not found")
+            @ApiResponse(responseCode = "200", description = "Order updated to DELIVERED"),
+            @ApiResponse(responseCode = "400", description = "Invalid input"),
+            @ApiResponse(responseCode = "404", description = "Order not found")
     })
     public ResponseEntity<OrderResource> patchOrderStatusToDelivered(
             @PathVariable Long orderId,

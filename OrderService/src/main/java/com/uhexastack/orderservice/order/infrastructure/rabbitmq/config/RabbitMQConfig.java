@@ -10,9 +10,15 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RabbitMQConfig {
+
     @Bean
     public Queue orderCreatedQueue() {
         return new Queue("order.created.queue");
+    }
+
+    @Bean
+    public TopicExchange orderExchange(@Value("${rabbitmq.exchange.order}") String exchangeName) {
+        return new TopicExchange(exchangeName);
     }
 
     @Bean
@@ -21,5 +27,4 @@ public class RabbitMQConfig {
                                        @Value("${rabbitmq.routing-key.order-created}") String routingKey) {
         return BindingBuilder.bind(orderCreatedQueue).to(orderExchange).with(routingKey);
     }
-
 }
