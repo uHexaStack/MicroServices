@@ -4,22 +4,20 @@ server:
 spring:
   application:
     name: inventory-service
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: inventory-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
 
-  rabbitmq:
-    exchange:
-      order: order.exchange
-    routing-key:
-      order-cancelled: order.cancelled
-    listener:
-      simple:
-        default-requeue-rejected: false
-        acknowledge-mode: auto
-    template:
-      exchange: ${spring.rabbitmq.exchange.order}
-    message-converter:
-      json:
-        enabled: true
 
+
+  
 eureka:
   client:
     service-url:
