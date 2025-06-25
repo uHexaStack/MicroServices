@@ -1,0 +1,7 @@
+package com.uhexastack.notificationservice.shared.interfaces.rest.resources;
+
+/**
+ * Message Resource
+ */
+public record MessageResource(String message) {
+}
