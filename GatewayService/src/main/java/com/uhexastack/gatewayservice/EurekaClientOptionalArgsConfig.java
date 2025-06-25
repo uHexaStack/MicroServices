@@ -1,14 +1,14 @@
 package com.uhexastack.gatewayservice;
 
-                import org.springframework.cloud.netflix.eureka.EurekaClientConfigBean;
-                import org.springframework.context.annotation.Bean;
-                import org.springframework.context.annotation.Configuration;
+import org.springframework.cloud.netflix.eureka.EurekaClientConfigBean;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
-                @Configuration
-                public class EurekaClientOptionalArgsConfig {
+@Configuration
+public class EurekaClientOptionalArgsConfig {
 
-                    @Bean
-                    public EurekaClientConfigBean eurekaClientConfigBean() {
-                        return new EurekaClientConfigBean();
-                    }
-                }
+    @Bean
+    public EurekaClientConfigBean eurekaClientConfigBean() {
+        return new EurekaClientConfigBean();
+    }
+}
