@@ -38,28 +38,6 @@ spring:
             - Path=/api/v1/inventories/**
           filters:
             - StripPrefix=0
-            -
-        - id: billing-service
-          uri: lb://billing-service
-          predicates:
-            - Path=/api/v1/invoices/**
-          filters:
-            - StripPrefix=0
-            -
-        - id: payment-service
-          uri: lb://payments-service
-          predicates:
-            - Path=/api/v1/payments/**
-          filters:
-            - StripPrefix=0
-
-        - id: notifications-service
-          uri: lb://notifications-service
-          predicates:
-            - Path=/api/v1/notifications/**
-          filters:
-            - StripPrefix=0
-
 
 
 eureka:

@@ -10,3 +10,4 @@
 # Opcionalmente, ignorar otros archivos de entorno local
 *.log
 .DS_Store
+.env
