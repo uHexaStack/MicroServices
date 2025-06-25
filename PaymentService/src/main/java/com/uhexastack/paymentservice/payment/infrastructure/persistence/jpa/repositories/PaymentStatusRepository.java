@@ -1,7 +1,7 @@
 package com.uhexastack.paymentservice.payment.infrastructure.persistence.jpa.repositories;
 
-import com.qu3dena.aquaengine.backend.payment.domain.model.entities.PaymentStatus;
-import com.qu3dena.aquaengine.backend.payment.domain.model.valueobjects.PaymentStatusType;
+import com.uhexastack.paymentservice.payment.domain.model.entities.PaymentStatus;
+import com.uhexastack.paymentservice.payment.domain.model.valueobjects.PaymentStatusType;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

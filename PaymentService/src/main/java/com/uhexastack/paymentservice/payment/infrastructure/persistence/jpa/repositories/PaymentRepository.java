@@ -1,6 +1,6 @@
 package com.uhexastack.paymentservice.payment.infrastructure.persistence.jpa.repositories;
 
-import com.qu3dena.aquaengine.backend.payment.domain.model.aggregates.PaymentAggregate;
+import com.uhexastack.paymentservice.payment.domain.model.aggregates.PaymentAggregate;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

@@ -1,10 +1,11 @@
 package com.uhexastack.paymentservice.payment.application.internal.commandservices;
 
-import com.qu3dena.aquaengine.backend.payment.domain.model.commands.SeedPaymentStatusesCommand;
-import com.qu3dena.aquaengine.backend.payment.domain.model.entities.PaymentStatus;
-import com.qu3dena.aquaengine.backend.payment.domain.model.valueobjects.PaymentStatusType;
-import com.qu3dena.aquaengine.backend.payment.domain.services.PaymentStatusCommandService;
-import com.qu3dena.aquaengine.backend.payment.infrastructure.persistence.jpa.repositories.PaymentStatusRepository;
+
+import com.uhexastack.paymentservice.payment.domain.model.commands.SeedPaymentStatusesCommand;
+import com.uhexastack.paymentservice.payment.domain.model.entities.PaymentStatus;
+import com.uhexastack.paymentservice.payment.domain.model.valueobjects.PaymentStatusType;
+import com.uhexastack.paymentservice.payment.domain.services.PaymentStatusCommandService;
+import com.uhexastack.paymentservice.payment.infrastructure.persistence.jpa.repositories.PaymentStatusRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;

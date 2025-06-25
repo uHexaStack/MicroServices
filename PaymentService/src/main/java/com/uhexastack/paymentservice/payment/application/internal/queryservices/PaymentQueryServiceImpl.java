@@ -1,10 +1,11 @@
 package com.uhexastack.paymentservice.payment.application.internal.queryservices;
 
-import com.qu3dena.aquaengine.backend.payment.domain.model.aggregates.PaymentAggregate;
-import com.qu3dena.aquaengine.backend.payment.domain.model.queries.GetPaymentByIdQuery;
-import com.qu3dena.aquaengine.backend.payment.domain.model.queries.GetPaymentsByOrderIdQuery;
-import com.qu3dena.aquaengine.backend.payment.domain.services.PaymentQueryService;
-import com.qu3dena.aquaengine.backend.payment.infrastructure.persistence.jpa.repositories.PaymentRepository;
+
+import com.uhexastack.paymentservice.payment.domain.model.aggregates.PaymentAggregate;
+import com.uhexastack.paymentservice.payment.domain.model.queries.GetPaymentByIdQuery;
+import com.uhexastack.paymentservice.payment.domain.model.queries.GetPaymentsByOrderIdQuery;
+import com.uhexastack.paymentservice.payment.domain.services.PaymentQueryService;
+import com.uhexastack.paymentservice.payment.infrastructure.persistence.jpa.repositories.PaymentRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

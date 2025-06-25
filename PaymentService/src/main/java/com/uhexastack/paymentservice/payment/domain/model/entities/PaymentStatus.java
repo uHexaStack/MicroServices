@@ -1,6 +1,6 @@
 package com.uhexastack.paymentservice.payment.domain.model.entities;
 
-import com.qu3dena.aquaengine.backend.payment.domain.model.valueobjects.PaymentStatusType;
+import com.uhexastack.paymentservice.payment.domain.model.valueobjects.PaymentStatusType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,8 +1,10 @@
 package com.uhexastack.paymentservice.payment.domain.services;
 
-import com.qu3dena.aquaengine.backend.payment.domain.model.aggregates.PaymentAggregate;
-import com.qu3dena.aquaengine.backend.payment.domain.model.queries.GetPaymentByIdQuery;
-import com.qu3dena.aquaengine.backend.payment.domain.model.queries.GetPaymentsByOrderIdQuery;
+
+
+import com.uhexastack.paymentservice.payment.domain.model.aggregates.PaymentAggregate;
+import com.uhexastack.paymentservice.payment.domain.model.queries.GetPaymentByIdQuery;
+import com.uhexastack.paymentservice.payment.domain.model.queries.GetPaymentsByOrderIdQuery;
 
 import java.util.List;
 import java.util.Optional;

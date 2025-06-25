@@ -1,7 +1,8 @@
 package com.uhexastack.paymentservice.payment.application.internal.eventhandlers;
 
-import com.qu3dena.aquaengine.backend.payment.domain.model.commands.SeedPaymentStatusesCommand;
-import com.qu3dena.aquaengine.backend.payment.domain.services.PaymentStatusCommandService;
+
+import com.uhexastack.paymentservice.payment.domain.model.commands.SeedPaymentStatusesCommand;
+import com.uhexastack.paymentservice.payment.domain.services.PaymentStatusCommandService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.event.ApplicationReadyEvent;

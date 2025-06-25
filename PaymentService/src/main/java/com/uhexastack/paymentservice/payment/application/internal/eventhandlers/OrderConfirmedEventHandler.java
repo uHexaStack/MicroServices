@@ -1,9 +1,8 @@
 package com.uhexastack.paymentservice.payment.application.internal.eventhandlers;
 
-import com.qu3dena.aquaengine.backend.order.domain.model.events.OrderConfirmedEvent;
-import com.qu3dena.aquaengine.backend.order.interfaces.acl.OrderContextFacade;
-import com.qu3dena.aquaengine.backend.payment.domain.model.commands.ProcessPaymentCommand;
-import com.qu3dena.aquaengine.backend.payment.domain.services.PaymentCommandService;
+
+import com.uhexastack.paymentservice.payment.domain.model.commands.ProcessPaymentCommand;
+import com.uhexastack.paymentservice.payment.domain.services.PaymentCommandService;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 

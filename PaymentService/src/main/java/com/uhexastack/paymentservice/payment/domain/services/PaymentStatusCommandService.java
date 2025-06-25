@@ -1,7 +1,6 @@
 package com.uhexastack.paymentservice.payment.domain.services;
 
-import com.qu3dena.aquaengine.backend.payment.domain.model.commands.SeedPaymentStatusesCommand;
-
+import com.uhexastack.paymentservice.payment.domain.model.commands.SeedPaymentStatusesCommand;
 /**
  * Service interface for handling payment status commands.
  */

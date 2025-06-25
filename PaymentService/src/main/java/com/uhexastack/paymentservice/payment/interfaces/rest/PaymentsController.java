@@ -1,14 +1,8 @@
 package com.uhexastack.paymentservice.payment.interfaces.rest;
 
-import com.qu3dena.aquaengine.backend.payment.domain.model.commands.RefundPaymentCommand;
-import com.qu3dena.aquaengine.backend.payment.domain.model.queries.GetPaymentByIdQuery;
-import com.qu3dena.aquaengine.backend.payment.domain.model.queries.GetPaymentsByOrderIdQuery;
-import com.qu3dena.aquaengine.backend.payment.domain.services.PaymentCommandService;
-import com.qu3dena.aquaengine.backend.payment.domain.services.PaymentQueryService;
-import com.qu3dena.aquaengine.backend.payment.interfaces.rest.resources.CreatePaymentResource;
-import com.qu3dena.aquaengine.backend.payment.interfaces.rest.resources.PaymentResource;
-import com.qu3dena.aquaengine.backend.payment.interfaces.rest.transform.CreatePaymentCommandFromResourceAssembler;
-import com.qu3dena.aquaengine.backend.payment.interfaces.rest.transform.PaymentResourceFromEntityAssembler;
+
+import com.uhexastack.paymentservice.payment.domain.services.PaymentCommandService;
+import com.uhexastack.paymentservice.payment.domain.services.PaymentQueryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;

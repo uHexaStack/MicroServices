@@ -1,11 +1,12 @@
 package com.uhexastack.paymentservice.payment.domain.model.aggregates;
 
-import com.qu3dena.aquaengine.backend.payment.domain.model.commands.ProcessPaymentCommand;
-import com.qu3dena.aquaengine.backend.payment.domain.model.entities.PaymentStatus;
-import com.qu3dena.aquaengine.backend.payment.domain.model.valueobjects.PaymentMethod;
-import com.qu3dena.aquaengine.backend.payment.domain.model.valueobjects.PaymentStatusType;
-import com.qu3dena.aquaengine.backend.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
-import com.qu3dena.aquaengine.backend.shared.domain.model.valuobjects.Money;
+
+import com.uhexastack.paymentservice.payment.domain.model.commands.ProcessPaymentCommand;
+import com.uhexastack.paymentservice.payment.domain.model.entities.PaymentStatus;
+import com.uhexastack.paymentservice.payment.domain.model.valueobjects.PaymentMethod;
+import com.uhexastack.paymentservice.payment.domain.model.valueobjects.PaymentStatusType;
+import com.uhexastack.paymentservice.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
+import com.uhexastack.paymentservice.shared.domain.model.valuobjects.Money;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

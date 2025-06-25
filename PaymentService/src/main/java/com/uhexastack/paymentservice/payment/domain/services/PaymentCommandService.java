@@ -1,9 +1,10 @@
 package com.uhexastack.paymentservice.payment.domain.services;
 
-import com.qu3dena.aquaengine.backend.payment.domain.model.aggregates.PaymentAggregate;
-import com.qu3dena.aquaengine.backend.payment.domain.model.commands.ProcessPaymentCommand;
-import com.qu3dena.aquaengine.backend.payment.domain.model.commands.RefundPaymentCommand;
-import com.qu3dena.aquaengine.backend.payment.domain.model.events.PaymentRefundedEvent;
+
+import com.uhexastack.paymentservice.payment.domain.model.aggregates.PaymentAggregate;
+import com.uhexastack.paymentservice.payment.domain.model.commands.ProcessPaymentCommand;
+import com.uhexastack.paymentservice.payment.domain.model.commands.RefundPaymentCommand;
+import com.uhexastack.paymentservice.payment.domain.model.events.PaymentRefundedEvent;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
 import java.util.Optional;
