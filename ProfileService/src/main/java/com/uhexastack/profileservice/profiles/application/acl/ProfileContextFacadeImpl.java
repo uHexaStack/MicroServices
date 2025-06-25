@@ -1,10 +1,11 @@
 package com.uhexastack.profileservice.profiles.application.acl;
 
-import com.qu3dena.aquaengine.backend.profiles.domain.model.commands.CreateProfileCommand;
-import com.qu3dena.aquaengine.backend.profiles.domain.model.queries.GetProfileByUserIdQuery;
-import com.qu3dena.aquaengine.backend.profiles.domain.services.ProfileCommandService;
-import com.qu3dena.aquaengine.backend.profiles.domain.services.ProfileQueryService;
-import com.qu3dena.aquaengine.backend.profiles.interfaces.acl.ProfileContextFacade;
+
+import com.uhexastack.profileservice.profiles.domain.model.commands.CreateProfileCommand;
+import com.uhexastack.profileservice.profiles.domain.model.queries.GetProfileByUserIdQuery;
+import com.uhexastack.profileservice.profiles.domain.services.ProfileCommandService;
+import com.uhexastack.profileservice.profiles.domain.services.ProfileQueryService;
+import com.uhexastack.profileservice.profiles.interfaces.acl.ProfileContextFacade;
 import org.springframework.stereotype.Service;
 
 @Service

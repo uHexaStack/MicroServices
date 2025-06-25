@@ -1,10 +1,10 @@
 package com.uhexastack.profileservice.profiles.application.internal.queryservices;
 
-import com.qu3dena.aquaengine.backend.profiles.domain.model.aggregates.ProfileAggregate;
-import com.qu3dena.aquaengine.backend.profiles.domain.model.queries.GetAllProfilesQuery;
-import com.qu3dena.aquaengine.backend.profiles.domain.model.queries.GetProfileByUserIdQuery;
-import com.qu3dena.aquaengine.backend.profiles.domain.services.ProfileQueryService;
-import com.qu3dena.aquaengine.backend.profiles.infrastructure.persistence.jpa.repositories.ProfileRepository;
+
+import com.uhexastack.profileservice.profiles.domain.model.aggregates.ProfileAggregate;
+import com.uhexastack.profileservice.profiles.domain.model.queries.*;
+import com.uhexastack.profileservice.profiles.domain.services.ProfileQueryService;
+import com.uhexastack.profileservice.profiles.infrastructure.persistence.jpa.repositories.ProfileRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

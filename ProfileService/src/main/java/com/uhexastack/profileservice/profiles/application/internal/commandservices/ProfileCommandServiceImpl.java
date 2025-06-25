@@ -1,9 +1,10 @@
 package com.uhexastack.profileservice.profiles.application.internal.commandservices;
 
-import com.qu3dena.aquaengine.backend.profiles.domain.model.aggregates.ProfileAggregate;
-import com.qu3dena.aquaengine.backend.profiles.domain.model.commands.CreateProfileCommand;
-import com.qu3dena.aquaengine.backend.profiles.domain.services.ProfileCommandService;
-import com.qu3dena.aquaengine.backend.profiles.infrastructure.persistence.jpa.repositories.ProfileRepository;
+
+import com.uhexastack.profileservice.profiles.domain.model.aggregates.ProfileAggregate;
+import com.uhexastack.profileservice.profiles.domain.model.commands.CreateProfileCommand;
+import com.uhexastack.profileservice.profiles.domain.services.ProfileCommandService;
+import com.uhexastack.profileservice.profiles.infrastructure.persistence.jpa.repositories.ProfileRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

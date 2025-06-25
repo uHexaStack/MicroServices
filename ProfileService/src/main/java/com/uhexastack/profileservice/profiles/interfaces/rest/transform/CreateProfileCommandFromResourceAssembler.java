@@ -1,7 +1,8 @@
 package com.uhexastack.profileservice.profiles.interfaces.rest.transform;
 
-import com.qu3dena.aquaengine.backend.profiles.domain.model.commands.CreateProfileCommand;
-import com.qu3dena.aquaengine.backend.profiles.interfaces.rest.resources.CreateProfileResource;
+
+import com.uhexastack.profileservice.profiles.domain.model.commands.CreateProfileCommand;
+import com.uhexastack.profileservice.profiles.interfaces.rest.resources.CreateProfileResource;
 
 public class CreateProfileCommandFromResourceAssembler {
 

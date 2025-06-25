@@ -1,8 +1,9 @@
 package com.uhexastack.profileservice.profiles.domain.model.aggregates;
 
-import com.qu3dena.aquaengine.backend.profiles.domain.model.commands.CreateProfileCommand;
-import com.qu3dena.aquaengine.backend.profiles.domain.model.valuobjects.*;
-import com.qu3dena.aquaengine.backend.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
+
+import com.uhexastack.profileservice.profiles.domain.model.commands.CreateProfileCommand;
+import com.uhexastack.profileservice.profiles.domain.model.valuobjects.*;
+import com.uhexastack.profileservice.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

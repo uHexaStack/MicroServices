@@ -1,7 +1,8 @@
 package com.uhexastack.profileservice.profiles.domain.services;
 
-import com.qu3dena.aquaengine.backend.profiles.domain.model.aggregates.ProfileAggregate;
-import com.qu3dena.aquaengine.backend.profiles.domain.model.commands.CreateProfileCommand;
+
+import com.uhexastack.profileservice.profiles.domain.model.aggregates.ProfileAggregate;
+import com.uhexastack.profileservice.profiles.domain.model.commands.CreateProfileCommand;
 
 import java.util.Optional;
 

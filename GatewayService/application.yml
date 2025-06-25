@@ -12,6 +12,7 @@ spring:
           enabled: true
           lower-case-service-id: true
       routes:
+
         - id: admin-service
           uri: lb://admin-service
           predicates:
@@ -23,7 +24,17 @@ spring:
         - id: registry-service
           uri: lb://registry-service
           predicates:
-            - Path=/registry/**
+            - Path=/registry/*
+            
+#FROM HERE ON WE HAVE THE SERVICES THAT HAVE THE CORE BUSINESS LOGIC
+        - id: auth-service
+          uri: lb://auth-service
+          predicates:
+            - Path=/api/v1/auth/**,/api/v1/user/**,/api/v1/roles/**
+          filters:
+            - StripPrefix=0
+          
+          
 
         - id: order-service
           uri: lb://order-service

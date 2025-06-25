@@ -1,8 +1,7 @@
 package com.uhexastack.profileservice.profiles.domain.services;
 
-import com.qu3dena.aquaengine.backend.profiles.domain.model.aggregates.ProfileAggregate;
-import com.qu3dena.aquaengine.backend.profiles.domain.model.queries.GetAllProfilesQuery;
-import com.qu3dena.aquaengine.backend.profiles.domain.model.queries.GetProfileByUserIdQuery;
+import com.uhexastack.profileservice.profiles.domain.model.aggregates.ProfileAggregate;
+import com.uhexastack.profileservice.profiles.domain.model.queries.*;
 
 import java.util.List;
 import java.util.Optional;

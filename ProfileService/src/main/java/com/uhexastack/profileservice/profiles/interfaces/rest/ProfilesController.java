@@ -1,10 +1,11 @@
 package com.uhexastack.profileservice.profiles.interfaces.rest;
 
-import com.qu3dena.aquaengine.backend.profiles.domain.model.queries.GetAllProfilesQuery;
-import com.qu3dena.aquaengine.backend.profiles.domain.model.queries.GetProfileByUserIdQuery;
-import com.qu3dena.aquaengine.backend.profiles.domain.services.ProfileQueryService;
-import com.qu3dena.aquaengine.backend.profiles.interfaces.rest.resources.ProfileResource;
-import com.qu3dena.aquaengine.backend.profiles.interfaces.rest.transform.ProfileResourceFromEntityAssembler;
+
+import com.uhexastack.profileservice.profiles.domain.model.queries.GetAllProfilesQuery;
+import com.uhexastack.profileservice.profiles.domain.model.queries.GetProfileByUserIdQuery;
+import com.uhexastack.profileservice.profiles.domain.services.ProfileQueryService;
+import com.uhexastack.profileservice.profiles.interfaces.rest.resources.ProfileResource;
+import com.uhexastack.profileservice.profiles.interfaces.rest.transform.ProfileResourceFromEntityAssembler;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
