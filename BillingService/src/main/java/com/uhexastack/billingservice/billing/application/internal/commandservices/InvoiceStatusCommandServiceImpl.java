@@ -1,10 +1,10 @@
 package com.uhexastack.billingservice.billing.application.internal.commandservices;
 
-import com.qu3dena.aquaengine.backend.billing.domain.model.commands.SeedInvoiceStatusesCommand;
-import com.qu3dena.aquaengine.backend.billing.domain.model.entities.InvoiceStatus;
-import com.qu3dena.aquaengine.backend.billing.domain.model.valueobjects.InvoiceStatusType;
-import com.qu3dena.aquaengine.backend.billing.domain.services.InvoiceStatusCommandService;
-import com.qu3dena.aquaengine.backend.billing.infrastructure.persistence.jpa.repositories.InvoiceStatusRepository;
+import com.uhexastack.billingservice.billing.domain.model.commands.SeedInvoiceStatusesCommand;
+import com.uhexastack.billingservice.billing.domain.model.entities.InvoiceStatus;
+import com.uhexastack.billingservice.billing.domain.model.valueobjects.InvoiceStatusType;
+import com.uhexastack.billingservice.billing.domain.services.InvoiceStatusCommandService;
+import com.uhexastack.billingservice.billing.infrastructure.persistence.jpa.repositories.InvoiceStatusRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;

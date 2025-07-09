@@ -1,8 +1,8 @@
 package com.uhexastack.billingservice.billing.application.internal.eventhandlers;
 
-import com.qu3dena.aquaengine.backend.billing.domain.model.commands.IssueInvoiceCommand;
-import com.qu3dena.aquaengine.backend.billing.domain.services.InvoiceCommandService;
-import com.qu3dena.aquaengine.backend.payment.domain.model.events.PaymentProcessedEvent;
+import com.uhexastack.billingservice.billing.domain.model.commands.IssueInvoiceCommand;
+import com.uhexastack.billingservice.billing.domain.services.InvoiceCommandService;
+import com.uhexastack.billingservice.billing.domain.model.events.PaymentProcessedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 

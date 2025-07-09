@@ -1,7 +1,7 @@
 package com.uhexastack.billingservice.billing.infrastructure.persistence.jpa.repositories;
 
-import com.qu3dena.aquaengine.backend.billing.domain.model.entities.InvoiceStatus;
-import com.qu3dena.aquaengine.backend.billing.domain.model.valueobjects.InvoiceStatusType;
+import com.uhexastack.billingservice.billing.domain.model.entities.InvoiceStatus;
+import com.uhexastack.billingservice.billing.domain.model.valueobjects.InvoiceStatusType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

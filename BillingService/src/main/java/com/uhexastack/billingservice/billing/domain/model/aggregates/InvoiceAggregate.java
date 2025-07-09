@@ -1,10 +1,10 @@
 package com.uhexastack.billingservice.billing.domain.model.aggregates;
 
-import com.qu3dena.aquaengine.backend.billing.domain.model.commands.IssueInvoiceCommand;
-import com.qu3dena.aquaengine.backend.billing.domain.model.entities.InvoiceStatus;
-import com.qu3dena.aquaengine.backend.billing.domain.model.valueobjects.InvoiceNumber;
-import com.qu3dena.aquaengine.backend.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
-import com.qu3dena.aquaengine.backend.shared.domain.model.valuobjects.Money;
+import com.uhexastack.billingservice.billing.domain.model.commands.IssueInvoiceCommand;
+import com.uhexastack.billingservice.billing.domain.model.entities.InvoiceStatus;
+import com.uhexastack.billingservice.billing.domain.model.valueobjects.InvoiceNumber;
+import com.uhexastack.billingservice.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
+import com.uhexastack.billingservice.shared.domain.model.valuobjects.Money;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

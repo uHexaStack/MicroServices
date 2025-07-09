@@ -1,7 +1,7 @@
 package com.uhexastack.billingservice.billing.domain.services;
 
-import com.qu3dena.aquaengine.backend.billing.domain.model.aggregates.InvoiceAggregate;
-import com.qu3dena.aquaengine.backend.billing.domain.model.commands.IssueInvoiceCommand;
+import com.uhexastack.billingservice.billing.domain.model.aggregates.InvoiceAggregate;
+import com.uhexastack.billingservice.billing.domain.model.commands.IssueInvoiceCommand;
 
 import java.util.Optional;
 

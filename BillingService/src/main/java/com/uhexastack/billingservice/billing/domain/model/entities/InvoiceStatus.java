@@ -1,6 +1,6 @@
 package com.uhexastack.billingservice.billing.domain.model.entities;
 
-import com.qu3dena.aquaengine.backend.billing.domain.model.valueobjects.InvoiceStatusType;
+import com.uhexastack.billingservice.billing.domain.model.valueobjects.InvoiceStatusType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

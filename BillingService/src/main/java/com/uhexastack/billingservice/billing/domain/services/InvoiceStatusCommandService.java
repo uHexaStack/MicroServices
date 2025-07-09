@@ -1,6 +1,6 @@
 package com.uhexastack.billingservice.billing.domain.services;
 
-import com.qu3dena.aquaengine.backend.billing.domain.model.commands.SeedInvoiceStatusesCommand;
+import com.uhexastack.billingservice.billing.domain.model.commands.SeedInvoiceStatusesCommand;
 
 /**
  * Service interface for handling invoice status commands.

@@ -1,7 +1,7 @@
 package com.uhexastack.billingservice.billing.application.internal.eventhandlers;
 
-import com.qu3dena.aquaengine.backend.billing.domain.model.commands.SeedInvoiceStatusesCommand;
-import com.qu3dena.aquaengine.backend.billing.domain.services.InvoiceStatusCommandService;
+import com.uhexastack.billingservice.billing.domain.model.commands.SeedInvoiceStatusesCommand;
+import com.uhexastack.billingservice.billing.domain.services.InvoiceStatusCommandService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.event.ApplicationReadyEvent;

@@ -1,7 +1,7 @@
 package com.uhexastack.billingservice.billing.interfaces.rest.transform;
 
-import com.qu3dena.aquaengine.backend.billing.domain.model.aggregates.InvoiceAggregate;
-import com.qu3dena.aquaengine.backend.billing.interfaces.rest.resources.InvoiceResource;
+import com.uhexastack.billingservice.billing.domain.model.aggregates.InvoiceAggregate;
+import com.uhexastack.billingservice.billing.interfaces.rest.resources.InvoiceResource;
 
 /**
  * Assembler class to transform an invoice aggregate entity into an invoice resource.

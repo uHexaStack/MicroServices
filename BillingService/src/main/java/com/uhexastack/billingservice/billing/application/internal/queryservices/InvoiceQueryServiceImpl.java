@@ -1,10 +1,10 @@
 package com.uhexastack.billingservice.billing.application.internal.queryservices;
 
-import com.qu3dena.aquaengine.backend.billing.domain.model.aggregates.InvoiceAggregate;
-import com.qu3dena.aquaengine.backend.billing.domain.model.queries.GetAllInvoicesQuery;
-import com.qu3dena.aquaengine.backend.billing.domain.model.queries.GetInvoiceByOrderIdQuery;
-import com.qu3dena.aquaengine.backend.billing.domain.services.InvoiceQueryService;
-import com.qu3dena.aquaengine.backend.billing.infrastructure.persistence.jpa.repositories.InvoiceRepository;
+import com.uhexastack.billingservice.billing.domain.model.aggregates.InvoiceAggregate;
+import com.uhexastack.billingservice.billing.domain.model.queries.GetAllInvoicesQuery;
+import com.uhexastack.billingservice.billing.domain.model.queries.GetInvoiceByOrderIdQuery;
+import com.uhexastack.billingservice.billing.domain.services.InvoiceQueryService;
+import com.uhexastack.billingservice.billing.infrastructure.persistence.jpa.repositories.InvoiceRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

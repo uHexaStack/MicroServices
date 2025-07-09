@@ -1,14 +1,14 @@
 package com.uhexastack.billingservice.billing.application.internal.commandservices;
 
-import com.qu3dena.aquaengine.backend.billing.domain.model.aggregates.InvoiceAggregate;
-import com.qu3dena.aquaengine.backend.billing.domain.model.commands.IssueInvoiceCommand;
-import com.qu3dena.aquaengine.backend.billing.domain.model.events.InvoiceFailedEvent;
-import com.qu3dena.aquaengine.backend.billing.domain.model.events.InvoiceIssuedEvent;
-import com.qu3dena.aquaengine.backend.billing.domain.model.valueobjects.InvoiceNumber;
-import com.qu3dena.aquaengine.backend.billing.domain.model.valueobjects.InvoiceStatusType;
-import com.qu3dena.aquaengine.backend.billing.domain.services.InvoiceCommandService;
-import com.qu3dena.aquaengine.backend.billing.infrastructure.persistence.jpa.repositories.InvoiceRepository;
-import com.qu3dena.aquaengine.backend.billing.infrastructure.persistence.jpa.repositories.InvoiceStatusRepository;
+import com.uhexastack.billingservice.billing.domain.model.aggregates.InvoiceAggregate;
+import com.uhexastack.billingservice.billing.domain.model.commands.IssueInvoiceCommand;
+import com.uhexastack.billingservice.billing.domain.model.events.InvoiceFailedEvent;
+import com.uhexastack.billingservice.billing.domain.model.events.InvoiceIssuedEvent;
+import com.uhexastack.billingservice.billing.domain.model.valueobjects.InvoiceNumber;
+import com.uhexastack.billingservice.billing.domain.model.valueobjects.InvoiceStatusType;
+import com.uhexastack.billingservice.billing.domain.services.InvoiceCommandService;
+import com.uhexastack.billingservice.billing.infrastructure.persistence.jpa.repositories.InvoiceRepository;
+import com.uhexastack.billingservice.billing.infrastructure.persistence.jpa.repositories.InvoiceStatusRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationEventPublisher;

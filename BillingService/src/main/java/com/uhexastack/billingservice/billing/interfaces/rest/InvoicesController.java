@@ -1,14 +1,14 @@
 package com.uhexastack.billingservice.billing.interfaces.rest;
 
-import com.qu3dena.aquaengine.backend.billing.domain.model.queries.GetAllInvoicesQuery;
-import com.qu3dena.aquaengine.backend.billing.domain.model.queries.GetInvoiceByOrderIdQuery;
-import com.qu3dena.aquaengine.backend.billing.domain.services.InvoiceCommandService;
-import com.qu3dena.aquaengine.backend.billing.domain.services.InvoiceQueryService;
-import com.qu3dena.aquaengine.backend.billing.interfaces.rest.resources.InvoiceResource;
-import com.qu3dena.aquaengine.backend.billing.interfaces.rest.resources.IssueInvoiceResource;
-import com.qu3dena.aquaengine.backend.billing.interfaces.rest.transform.InvoiceResourceFromEntityAssembler;
-import com.qu3dena.aquaengine.backend.billing.interfaces.rest.transform.IssueInvoiceResourceAssembler;
-import com.qu3dena.aquaengine.backend.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
+import com.uhexastack.billingservice.billing.domain.model.queries.GetAllInvoicesQuery;
+import com.uhexastack.billingservice.billing.domain.model.queries.GetInvoiceByOrderIdQuery;
+import com.uhexastack.billingservice.billing.domain.services.InvoiceCommandService;
+import com.uhexastack.billingservice.billing.domain.services.InvoiceQueryService;
+import com.uhexastack.billingservice.billing.interfaces.rest.resources.InvoiceResource;
+import com.uhexastack.billingservice.billing.interfaces.rest.resources.IssueInvoiceResource;
+import com.uhexastack.billingservice.billing.interfaces.rest.transform.InvoiceResourceFromEntityAssembler;
+import com.uhexastack.billingservice.billing.interfaces.rest.transform.IssueInvoiceResourceAssembler;
+import com.uhexastack.billingservice.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;

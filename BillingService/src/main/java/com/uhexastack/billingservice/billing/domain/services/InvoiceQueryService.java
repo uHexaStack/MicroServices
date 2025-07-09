@@ -1,8 +1,8 @@
 package com.uhexastack.billingservice.billing.domain.services;
 
-import com.qu3dena.aquaengine.backend.billing.domain.model.aggregates.InvoiceAggregate;
-import com.qu3dena.aquaengine.backend.billing.domain.model.queries.GetAllInvoicesQuery;
-import com.qu3dena.aquaengine.backend.billing.domain.model.queries.GetInvoiceByOrderIdQuery;
+import com.uhexastack.billingservice.billing.domain.model.aggregates.InvoiceAggregate;
+import com.uhexastack.billingservice.billing.domain.model.queries.GetAllInvoicesQuery;
+import com.uhexastack.billingservice.billing.domain.model.queries.GetInvoiceByOrderIdQuery;
 
 import java.util.List;
 import java.util.Optional;

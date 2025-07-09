@@ -1,6 +1,6 @@
 package com.uhexastack.billingservice.billing.infrastructure.persistence.jpa.repositories;
 
-import com.qu3dena.aquaengine.backend.billing.domain.model.aggregates.InvoiceAggregate;
+import com.uhexastack.billingservice.billing.domain.model.aggregates.InvoiceAggregate;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

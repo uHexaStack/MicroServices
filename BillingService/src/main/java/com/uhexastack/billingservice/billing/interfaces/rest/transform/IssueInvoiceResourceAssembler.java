@@ -1,7 +1,7 @@
 package com.uhexastack.billingservice.billing.interfaces.rest.transform;
 
-import com.qu3dena.aquaengine.backend.billing.domain.model.commands.IssueInvoiceCommand;
-import com.qu3dena.aquaengine.backend.billing.interfaces.rest.resources.IssueInvoiceResource;
+import com.uhexastack.billingservice.billing.domain.model.commands.IssueInvoiceCommand;
+import com.uhexastack.billingservice.billing.interfaces.rest.resources.IssueInvoiceResource;
 
 /**
  * Assembler to convert an {@code IssueInvoiceResource} into an {@code IssueInvoiceCommand}.
