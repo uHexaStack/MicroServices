@@ -1,23 +1,24 @@
 package com.uhexastack.notificationservice.notification.application.internal.eventhandlers;
 
-
+import com.uhexastack.notificationservice.notification.domain.model.commands.SendNotificationCommand;
 import com.uhexastack.notificationservice.notification.domain.services.NotificationCommandService;
+import com.uhexastack.notificationservice.shared.domain.model.events.PaymentProcessedEvent;
+import com.uhexastack.notificationservice.shared.interfaces.acl.ProfileContextFacade;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 @Service
 public class NotificationPaymentProcessedEventHandler {
 
-    //TODO refactor to use NotificationContextFacade
     private final NotificationCommandService commandService;
-    //private final ProfileContextFacade profileFacade;
+    private final ProfileContextFacade profileFacade;
 
     public NotificationPaymentProcessedEventHandler(
             NotificationCommandService commandService,
-            ProfileContextFacade       profileFacade
+            ProfileContextFacade profileFacade
     ) {
         this.commandService = commandService;
-        this.profileFacade   = profileFacade;
+        this.profileFacade = profileFacade;
     }
 
     @EventListener

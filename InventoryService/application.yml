@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: inventory-service
+    name: product-service
   kafka:
     bootstrap-servers: localhost:9092
     consumer:
@@ -27,4 +27,4 @@ eureka:
 
   instance:
     prefer-ip-address: true
-    hostname: localhost
+    hostname: product-service

@@ -1,7 +1,7 @@
 package com.uhexastack.notificationservice.notification.application.internal.eventhandlers;
 
-import com.qu3dena.aquaengine.backend.inventory.domain.model.events.StockLowEvent;
-import com.qu3dena.aquaengine.backend.notification.interfaces.acl.NotificationContextFacade;
+import com.uhexastack.notificationservice.shared.domain.model.events.StockLowEvent;
+import com.uhexastack.notificationservice.shared.interfaces.acl.NotificationContextFacade;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 

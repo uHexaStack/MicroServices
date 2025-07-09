@@ -147,6 +147,7 @@ public class WebSecurityConfiguration {
                 // Authorization rules
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(publicMatchers).permitAll()
+                        .requestMatchers("/api/v1/authentication/sign-up").permitAll()
                         .anyRequest().authenticated()
                 )
                 // Set the authentication provider by calling the bean method.
@@ -155,7 +156,8 @@ public class WebSecurityConfiguration {
                 .addFilterBefore(
                         authorizationRequestFilter(tokenService, userDetailsService),
                         UsernamePasswordAuthenticationFilter.class
-                );
+                )
+                ;
 
         return http.build();
     }

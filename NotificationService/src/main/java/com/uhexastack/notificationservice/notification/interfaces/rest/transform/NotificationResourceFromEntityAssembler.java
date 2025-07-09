@@ -1,7 +1,7 @@
 package com.uhexastack.notificationservice.notification.interfaces.rest.transform;
 
-import com.qu3dena.aquaengine.backend.notification.domain.model.aggregates.NotificationAggregate;
-import com.qu3dena.aquaengine.backend.notification.interfaces.rest.resources.NotificationResource;
+import com.uhexastack.notificationservice.notification.domain.model.aggregates.NotificationAggregate;
+import com.uhexastack.notificationservice.notification.interfaces.rest.resources.NotificationResource;
 
 public class NotificationResourceFromEntityAssembler {
     public static NotificationResource toResource(NotificationAggregate entity) {

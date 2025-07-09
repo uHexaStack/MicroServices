@@ -1,21 +1,22 @@
 package com.uhexastack.paymentservice.payment.application.acl;
 
-import com.qu3dena.aquaengine.backend.payment.domain.model.aggregates.PaymentAggregate;
-import com.qu3dena.aquaengine.backend.payment.domain.model.commands.ProcessPaymentCommand;
-import com.qu3dena.aquaengine.backend.payment.domain.model.commands.RefundPaymentCommand;
-import com.qu3dena.aquaengine.backend.payment.domain.model.queries.GetPaymentByIdQuery;
-import com.qu3dena.aquaengine.backend.payment.domain.model.valueobjects.PaymentStatusType;
-import com.qu3dena.aquaengine.backend.payment.domain.services.PaymentCommandService;
-import com.qu3dena.aquaengine.backend.payment.domain.services.PaymentQueryService;
-import com.qu3dena.aquaengine.backend.payment.infrastructure.persistence.jpa.repositories.PaymentRepository;
-import com.qu3dena.aquaengine.backend.payment.infrastructure.persistence.jpa.repositories.PaymentStatusRepository;
-import com.qu3dena.aquaengine.backend.payment.interfaces.acl.PaymentContextFacade;
-import com.qu3dena.aquaengine.backend.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
+import com.uhexastack.paymentservice.payment.domain.model.aggregates.PaymentAggregate;
+import com.uhexastack.paymentservice.payment.domain.model.commands.ProcessPaymentCommand;
+import com.uhexastack.paymentservice.payment.domain.model.commands.RefundPaymentCommand;
+import com.uhexastack.paymentservice.payment.domain.model.queries.GetPaymentByIdQuery;
+import com.uhexastack.paymentservice.payment.domain.model.valueobjects.PaymentStatusType;
+import com.uhexastack.paymentservice.payment.domain.services.PaymentCommandService;
+import com.uhexastack.paymentservice.payment.domain.services.PaymentQueryService;
+import com.uhexastack.paymentservice.payment.infrastructure.persistence.jpa.repositories.PaymentRepository;
+import com.uhexastack.paymentservice.payment.infrastructure.persistence.jpa.repositories.PaymentStatusRepository;
+import com.uhexastack.paymentservice.payment.interfaces.acl.PaymentContextFacade;
+import com.uhexastack.paymentservice.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
+
 
 /**
  * Implementation of the {@code PaymentContextFacade} interface.

@@ -3,6 +3,8 @@ package com.uhexastack.paymentservice.payment.application.internal.eventhandlers
 
 import com.uhexastack.paymentservice.payment.domain.model.commands.ProcessPaymentCommand;
 import com.uhexastack.paymentservice.payment.domain.services.PaymentCommandService;
+import com.uhexastack.paymentservice.payment.interfaces.acl.OrderContextFacade;
+import com.uhexastack.paymentservice.shared.domain.model.events.OrderConfirmedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 

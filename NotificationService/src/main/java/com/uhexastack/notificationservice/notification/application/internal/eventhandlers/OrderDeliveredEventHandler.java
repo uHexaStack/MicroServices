@@ -1,8 +1,8 @@
 package com.uhexastack.notificationservice.notification.application.internal.eventhandlers;
 
-import com.qu3dena.aquaengine.backend.notification.interfaces.acl.NotificationContextFacade;
-import com.qu3dena.aquaengine.backend.order.domain.model.events.OrderDeliveredEvent;
-import com.qu3dena.aquaengine.backend.profiles.interfaces.acl.ProfileContextFacade;
+import com.uhexastack.notificationservice.shared.domain.model.events.OrderDeliveredEvent;
+import com.uhexastack.notificationservice.shared.interfaces.acl.NotificationContextFacade;
+import com.uhexastack.notificationservice.shared.interfaces.acl.ProfileContextFacade;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 

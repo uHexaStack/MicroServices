@@ -12,30 +12,31 @@ spring:
           enabled: true
           lower-case-service-id: true
       routes:
-
-        - id: admin-service
-          uri: lb://admin-service
-          predicates:
-            - Path=/admin/**
-          filters:
-            - StripPrefix=1
-            - AddRequestHeader=X-Forwarded-Prefix, /admin
-
+        # Registry Service (Eureka) - Ruta pública
         - id: registry-service
           uri: lb://registry-service
           predicates:
-            - Path=/registry/*
-            
-#FROM HERE ON WE HAVE THE SERVICES THAT HAVE THE CORE BUSINESS LOGIC
+            - Path=/registry/**
+          filters:
+            - StripPrefix=1
+
+        # Auth Service - Rutas de autenticación
         - id: auth-service
           uri: lb://auth-service
           predicates:
-            - Path=/api/v1/auth/**,/api/v1/user/**,/api/v1/roles/**
+            - Path=/api/v1/authentication/**
           filters:
             - StripPrefix=0
-          
-          
 
+        # Profile Service
+        - id: profile-service
+          uri: lb://profile-service
+          predicates:
+            - Path=/api/v1/profiles/**
+          filters:
+            - StripPrefix=0
+
+        # Order Service
         - id: order-service
           uri: lb://order-service
           predicates:
@@ -43,6 +44,7 @@ spring:
           filters:
             - StripPrefix=0
 
+        # Inventory Service
         - id: inventory-service
           uri: lb://inventory-service
           predicates:
@@ -50,6 +52,39 @@ spring:
           filters:
             - StripPrefix=0
 
+        # Billing Service
+        - id: billing-service
+          uri: lb://billing-service
+          predicates:
+            - Path=/api/v1/billing/**
+          filters:
+            - StripPrefix=0
+
+        # Payment Service
+        - id: payment-service
+          uri: lb://payment-service
+          predicates:
+            - Path=/api/v1/payments/**
+          filters:
+            - StripPrefix=0
+
+        # Notification Service
+        - id: notification-service
+          uri: lb://notification-service
+          predicates:
+            - Path=/api/v1/notifications/**
+          filters:
+            - StripPrefix=0
+
+# Configuración JWT
+jwt:
+  secret: ${JWT_SECRET:aquaengine-jwt-secret-key-2024-very-secure-and-long-secret-key-for-production}
+
+# Configuración de logging
+logging:
+  level:
+    com.uhexastack.gatewayservice.filter: DEBUG
+    org.springframework.cloud.gateway: DEBUG
 
 eureka:
   client:

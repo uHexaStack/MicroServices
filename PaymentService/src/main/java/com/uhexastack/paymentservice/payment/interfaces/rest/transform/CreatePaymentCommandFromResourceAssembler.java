@@ -1,7 +1,7 @@
 package com.uhexastack.paymentservice.payment.interfaces.rest.transform;
 
-import com.qu3dena.aquaengine.backend.payment.domain.model.commands.ProcessPaymentCommand;
-import com.qu3dena.aquaengine.backend.payment.interfaces.rest.resources.CreatePaymentResource;
+import com.uhexastack.paymentservice.payment.domain.model.commands.ProcessPaymentCommand;
+import com.uhexastack.paymentservice.payment.interfaces.rest.resources.CreatePaymentResource;
 
 /**
  * Assembler class for converting a {@code CreatePaymentResource} into a {@code ProcessPaymentCommand}.

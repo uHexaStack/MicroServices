@@ -5,18 +5,34 @@ spring:
   application:
     name: billing-service
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://ls-b1c4ebefc6ce8bde8e0e76ac1101df7264519db9.ck5q66s0o6ai.us-east-1.rds.amazonaws.com:3306/billing?useSSL=false&allowPublicKeyRetrieval=true}
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://ls-b1c4ebefc6ce8bde8e0e76ac1101df7264519db9.ck5q66s0o6ai.us-east-1.rds.amazonaws.com:3306/billing?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&autoReconnect=true&failOverReadOnly=false}
     username: ${SPRING_DATASOURCE_USERNAME:dbmasteruser}
     password: ${SPRING_DATASOURCE_PASSWORD:mastardb}
     driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      connection-test-query: SELECT 1
+      validation-timeout: 3000
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: false
+    open-in-view: false
+    defer-datasource-initialization: true
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
         format_sql: true
+        connection:
+          provider_disables_autocommit: true
+  sql:
+    init:
+      mode: always
+      continue-on-error: true
   kafka:
     bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAPSERVERS:localhost:9092}
     consumer:

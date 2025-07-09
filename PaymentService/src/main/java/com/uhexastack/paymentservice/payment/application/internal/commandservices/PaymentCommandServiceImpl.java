@@ -12,7 +12,9 @@ import com.uhexastack.paymentservice.payment.infrastructure.persistence.jpa.repo
 import com.uhexastack.paymentservice.payment.infrastructure.persistence.jpa.repositories.PaymentStatusRepository;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Optional;
 
@@ -29,6 +31,8 @@ public class PaymentCommandServiceImpl implements PaymentCommandService {
     private final PaymentRepository paymentRepository;
     private final PaymentStatusRepository paymentStatusRepository;
     private final ApplicationEventPublisher eventPublisher;
+    private final KafkaTemplate<String, Object> kafkaTemplate;
+    private static final String PAYMENT_EVENTS_TOPIC = "payment-events";
 
     /**
      * Constructs a new PaymentCommandServiceImpl.
@@ -36,11 +40,14 @@ public class PaymentCommandServiceImpl implements PaymentCommandService {
      * @param paymentRepository       the repository for payment aggregates
      * @param paymentStatusRepository the repository for payment statuses
      * @param eventPublisher          the event publisher used to publish payment events
+     * @param kafkaTemplate           the Kafka template used to publish events to Kafka
      */
-    public PaymentCommandServiceImpl(PaymentRepository paymentRepository, PaymentStatusRepository paymentStatusRepository, ApplicationEventPublisher eventPublisher) {
+    @Autowired
+    public PaymentCommandServiceImpl(PaymentRepository paymentRepository, PaymentStatusRepository paymentStatusRepository, ApplicationEventPublisher eventPublisher, KafkaTemplate<String, Object> kafkaTemplate) {
         this.paymentRepository = paymentRepository;
         this.paymentStatusRepository = paymentStatusRepository;
         this.eventPublisher = eventPublisher;
+        this.kafkaTemplate = kafkaTemplate;
     }
 
     /**
@@ -89,17 +96,19 @@ public class PaymentCommandServiceImpl implements PaymentCommandService {
 
         // 6) Publish the appropriate event based on the next status
         if (nextStatus == PaymentStatusType.COMPLETED) {
-            eventPublisher.publishEvent(new PaymentProcessedEvent(
+            var event = new PaymentProcessedEvent(
                             saved.getUserId(),
                             saved.getId(),
                             saved.getOrderId(),
                             saved.getAmount().amount(),
                             saved.getAmount().currency()
-                    )
-            );
+                    );
+            eventPublisher.publishEvent(event);
+            kafkaTemplate.send(PAYMENT_EVENTS_TOPIC, "PaymentProcessedEvent", event);
         } else {
-            eventPublisher.publishEvent(
-                    new PaymentFailedEvent(saved.getUserId(), saved.getOrderId(), "Invalid amount or processing error"));
+            var event = new PaymentFailedEvent(saved.getUserId(), saved.getOrderId(), "Invalid amount or processing error");
+            eventPublisher.publishEvent(event);
+            kafkaTemplate.send(PAYMENT_EVENTS_TOPIC, "PaymentFailedEvent", event);
         }
 
         return Optional.of(saved);
@@ -147,6 +156,7 @@ public class PaymentCommandServiceImpl implements PaymentCommandService {
         // 5) Build the PaymentRefundedEvent and publish it
         var refundEvent = new PaymentRefundedEvent(saved.getId(), saved.getOrderId());
         eventPublisher.publishEvent(refundEvent);
+        kafkaTemplate.send(PAYMENT_EVENTS_TOPIC, "PaymentRefundedEvent", refundEvent);
 
         return Optional.of(ImmutablePair.of(saved, refundEvent));
     }

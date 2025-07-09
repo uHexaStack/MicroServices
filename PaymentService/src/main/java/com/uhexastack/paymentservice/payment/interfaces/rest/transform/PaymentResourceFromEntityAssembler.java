@@ -1,7 +1,7 @@
 package com.uhexastack.paymentservice.payment.interfaces.rest.transform;
 
-import com.qu3dena.aquaengine.backend.payment.domain.model.aggregates.PaymentAggregate;
-import com.qu3dena.aquaengine.backend.payment.interfaces.rest.resources.PaymentResource;
+import com.uhexastack.paymentservice.payment.domain.model.aggregates.PaymentAggregate;
+import com.uhexastack.paymentservice.payment.interfaces.rest.resources.PaymentResource;
 
 /**
  * Assembler class for converting a {@code PaymentAggregate} entity into a

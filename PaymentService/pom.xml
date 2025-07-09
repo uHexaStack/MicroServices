@@ -139,17 +139,23 @@
     </dependencies>
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>2022.0.3</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
+                    <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-dependencies</artifactId>
+            <version>2022.0.4</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
         </dependencies>
     </dependencyManagement>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -170,7 +176,6 @@
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>

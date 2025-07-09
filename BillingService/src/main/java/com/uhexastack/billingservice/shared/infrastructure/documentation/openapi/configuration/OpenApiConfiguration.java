@@ -1,53 +1,31 @@
 package com.uhexastack.billingservice.shared.infrastructure.documentation.openapi.configuration;
 
 import io.swagger.v3.oas.models.Components;
-import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class OpenApiConfiguration {
-    @Value("${spring.application.name}")
-    String applicationName;
-
-    @Value("${documentation.application.description}")
-    String applicationDescription;
-
-    @Value("${documentation.application.version}")
-    String applicationVersion;
 
     @Bean
-    public OpenAPI learningPlatformOpenApi() {
-
-        var openApi = new OpenAPI();
-
-        openApi.info(new Info()
-                        .title(applicationName)
-                        .description(applicationDescription)
-                        .version(applicationVersion)
+    public OpenAPI billingServiceOpenApi() {
+        return new OpenAPI()
+                .info(new Info()
+                        .title("Billing Service")
+                        .description("Microservice for managing billing and invoicing operations in the AquaEngine platform")
+                        .version("1.0.0")
                         .license(new License().name("Apache 2.0").url("https://springdoc.org")))
-                .externalDocs(new ExternalDocumentation()
-                        .description("AquaEngine Backend Documentation")
-                        .url("https://acme-learning-platform.wiki.github.io/docs"));
-
-        // Add security definitions
-        String securitySchemeName = "bearerAuth";
-        openApi.addSecurityItem(new SecurityRequirement()
-                        .addList(securitySchemeName))
+                .addSecurityItem(new SecurityRequirement().addList("bearerAuth"))
                 .components(new Components()
-                        .addSecuritySchemes(securitySchemeName, new SecurityScheme()
-                                .name(securitySchemeName)
+                        .addSecuritySchemes("bearerAuth", new SecurityScheme()
+                                .name("bearerAuth")
                                 .type(SecurityScheme.Type.HTTP)
                                 .scheme("bearer")
                                 .bearerFormat("JWT")));
-
-        // Return the OpenAPI object with the configuration
-        return openApi;
     }
 }

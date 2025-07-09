@@ -1,0 +1,285 @@
+version: '3.8'
+
+services:
+  # ===== INFRASTRUCTURE SERVICES =====
+  
+  # Zookeeper
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.0
+    container_name: aquaengine-zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    networks:
+      - aquaengine-network
+    healthcheck:
+      test: ["CMD-SHELL", "echo ruok | nc localhost 2181"]
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+
+  # Kafka
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: aquaengine-kafka
+    depends_on:
+      zookeeper:
+        condition: service_healthy
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:29092,PLAINTEXT_HOST://0.0.0.0:9092
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
+    networks:
+      - aquaengine-network
+    healthcheck:
+      test: ["CMD-SHELL", "kafka-topics --bootstrap-server localhost:29092 --list"]
+      timeout: 30s
+      retries: 5
+      start_period: 60s
+
+  # Registry Service (Eureka Server) - Necesario para service discovery
+  registry-service:
+    build: ./RegistryService
+    container_name: aquaengine-registry
+    ports:
+      - "8761:8761"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    networks:
+      - aquaengine-network
+    healthcheck:
+      test: ["CMD-SHELL", "netstat -tuln | grep :8761 || exit 1"]
+      timeout: 30s
+      retries: 5
+      start_period: 60s
+    mem_limit: 512m
+
+  # Gateway Service
+  gateway-service:
+    build: ./GatewayService
+    container_name: aquaengine-gateway
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://registry-service:8761/eureka
+      JWT_SECRET: "aquaengine-jwt-secret-key-2024-very-secure-and-long-secret-key-for-production"
+    networks:
+      - aquaengine-network
+    depends_on:
+      registry-service:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      timeout: 30s
+      retries: 5
+      start_period: 60s
+    mem_limit: 512m
+
+  # Auth Service
+  auth-service:
+    build: ./AuthService
+    container_name: aquaengine-auth
+    ports:
+      - "8088:8088"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://registry-service:8761/eureka
+      SPRING_KAFKA_BOOTSTRAPSERVERS: kafka:29092
+      SPRING_DATASOURCE_URL: jdbc:mysql://ls-b1c4ebefc6ce8bde8e0e76ac1101df7264519db9.ck5q66s0o6ai.us-east-1.rds.amazonaws.com:3306/auth?useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: dbmasteruser
+      SPRING_DATASOURCE_PASSWORD: mastardb
+      JWT_SECRET: "aquaengine-jwt-secret-key-2024-very-secure-and-long-secret-key-for-production"
+    networks:
+      - aquaengine-network
+    depends_on:
+      kafka:
+        condition: service_healthy
+      registry-service:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8088/actuator/health"]
+      timeout: 30s
+      retries: 5
+      start_period: 60s
+    mem_limit: 768m
+
+  # Profile Service
+  profile-service:
+    build: ./ProfileService
+    container_name: aquaengine-profile
+    ports:
+      - "8087:8087"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://registry-service:8761/eureka
+      SPRING_KAFKA_BOOTSTRAPSERVERS: kafka:29092
+      SPRING_DATASOURCE_URL: jdbc:mysql://ls-b1c4ebefc6ce8bde8e0e76ac1101df7264519db9.ck5q66s0o6ai.us-east-1.rds.amazonaws.com:3306/profile?useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: dbmasteruser
+      SPRING_DATASOURCE_PASSWORD: mastardb
+      JWT_SECRET: "aquaengine-jwt-secret-key-2024-very-secure-and-long-secret-key-for-production"
+    networks:
+      - aquaengine-network
+    depends_on:
+      kafka:
+        condition: service_healthy
+      registry-service:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8087/actuator/health"]
+      timeout: 30s
+      retries: 5
+      start_period: 60s
+    mem_limit: 768m
+
+  # Order Service
+  order-service:
+    build: ./OrderService
+    container_name: aquaengine-order
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://registry-service:8761/eureka
+      SPRING_KAFKA_BOOTSTRAPSERVERS: kafka:29092
+      SPRING_DATASOURCE_URL: jdbc:mysql://ls-b1c4ebefc6ce8bde8e0e76ac1101df7264519db9.ck5q66s0o6ai.us-east-1.rds.amazonaws.com:3306/order?useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: dbmasteruser
+      SPRING_DATASOURCE_PASSWORD: mastardb
+      JWT_SECRET: "aquaengine-jwt-secret-key-2024-very-secure-and-long-secret-key-for-production"
+    networks:
+      - aquaengine-network
+    depends_on:
+      kafka:
+        condition: service_healthy
+      registry-service:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8082/actuator/health"]
+      timeout: 30s
+      retries: 5
+      start_period: 60s
+    mem_limit: 768m
+
+  # Product Service (formerly Inventory Service)
+  product-service:
+    build: ./InventoryService
+    container_name: aquaengine-product
+    ports:
+      - "8083:8083"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://registry-service:8761/eureka
+      SPRING_KAFKA_BOOTSTRAPSERVERS: kafka:29092
+      SPRING_DATASOURCE_URL: jdbc:mysql://ls-b1c4ebefc6ce8bde8e0e76ac1101df7264519db9.ck5q66s0o6ai.us-east-1.rds.amazonaws.com:3306/inventory?useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: dbmasteruser
+      SPRING_DATASOURCE_PASSWORD: mastardb
+      JWT_SECRET: "aquaengine-jwt-secret-key-2024-very-secure-and-long-secret-key-for-production"
+    networks:
+      - aquaengine-network
+    depends_on:
+      kafka:
+        condition: service_healthy
+      registry-service:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8083/actuator/health"]
+      timeout: 30s
+      retries: 5
+      start_period: 60s
+    mem_limit: 768m
+
+  # Billing Service
+  billing-service:
+    build: ./BillingService
+    container_name: aquaengine-billing
+    ports:
+      - "8084:8084"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://registry-service:8761/eureka
+      SPRING_KAFKA_BOOTSTRAPSERVERS: kafka:29092
+      SPRING_DATASOURCE_URL: jdbc:mysql://ls-b1c4ebefc6ce8bde8e0e76ac1101df7264519db9.ck5q66s0o6ai.us-east-1.rds.amazonaws.com:3306/billing?useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: dbmasteruser
+      SPRING_DATASOURCE_PASSWORD: mastardb
+      JWT_SECRET: "aquaengine-jwt-secret-key-2024-very-secure-and-long-secret-key-for-production"
+    networks:
+      - aquaengine-network
+    depends_on:
+      kafka:
+        condition: service_healthy
+      registry-service:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8084/actuator/health"]
+      timeout: 30s
+      retries: 5
+      start_period: 60s
+    mem_limit: 768m
+
+  # Payment Service
+  payment-service:
+    build: ./PaymentService
+    container_name: aquaengine-payment
+    ports:
+      - "8085:8085"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://registry-service:8761/eureka
+      SPRING_KAFKA_BOOTSTRAPSERVERS: kafka:29092
+      SPRING_DATASOURCE_URL: jdbc:mysql://ls-b1c4ebefc6ce8bde8e0e76ac1101df7264519db9.ck5q66s0o6ai.us-east-1.rds.amazonaws.com:3306/payment?useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: dbmasteruser
+      SPRING_DATASOURCE_PASSWORD: mastardb
+      JWT_SECRET: "aquaengine-jwt-secret-key-2024-very-secure-and-long-secret-key-for-production"
+    networks:
+      - aquaengine-network
+    depends_on:
+      kafka:
+        condition: service_healthy
+      registry-service:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8085/actuator/health"]
+      timeout: 30s
+      retries: 5
+      start_period: 60s
+    mem_limit: 768m
+
+  # Notification Service
+  notification-service:
+    build: ./NotificationService
+    container_name: aquaengine-notification
+    ports:
+      - "8086:8086"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://registry-service:8761/eureka
+      SPRING_KAFKA_BOOTSTRAPSERVERS: kafka:29092
+      SPRING_DATASOURCE_URL: jdbc:mysql://ls-b1c4ebefc6ce8bde8e0e76ac1101df7264519db9.ck5q66s0o6ai.us-east-1.rds.amazonaws.com:3306/notification?useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: dbmasteruser
+      SPRING_DATASOURCE_PASSWORD: mastardb
+      JWT_SECRET: "aquaengine-jwt-secret-key-2024-very-secure-and-long-secret-key-for-production"
+    networks:
+      - aquaengine-network
+    depends_on:
+      kafka:
+        condition: service_healthy
+      registry-service:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8086/actuator/health"]
+      timeout: 30s
+      retries: 5
+      start_period: 60s
+    mem_limit: 768m
+
+# ===== NETWORKS =====
+networks:
+  aquaengine-network:
+    driver: bridge 
